@@ -34,7 +34,7 @@ describe("POST /api/movies", () => {
       title: "Star Wars",
       director: "George Lucas",
       year: "1977",
-      color: 1,
+      color: "1",
       duration: 120,
     };
 
