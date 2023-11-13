@@ -69,13 +69,53 @@ describe("POST /api/movies", () => {
     expect(getResponse.body.duration).toStrictEqual(newMovie.duration);
   });
 
-  it("should return an error", async () => {
-    const movieWithMissingProps = { title: "Harry Potter" };
-
+    it("should return an error", async () => {
+      const movieWithMissingProps = { title: "Harry Potter" };
+  
+      const response = await request(app)
+        .post("/api/movies")
+        .send(movieWithMissingProps);
+  
+      expect(response.status).toEqual(422);
+    });
+    
+   it("should return an error", async () => {
+    const movieWithMissingProps = { director: "Georges Lucas" };
+  
     const response = await request(app)
       .post("/api/movies")
       .send(movieWithMissingProps);
-
-    expect(response.status).toEqual(500);
+  
+    expect(response.status).toEqual(422);
   });
+
+  it("should return an error", async () => {
+    const movieWithMissingProps = { year: "1999" };
+  
+    const response = await request(app)
+      .post("/api/movies")
+      .send(movieWithMissingProps);
+  
+    expect(response.status).toEqual(422);
+  });
+
+ it("should return an error", async () => {
+  const movieWithMissingProps = { color: true };
+
+  const response = await request(app)
+    .post("/api/movies")
+    .send(movieWithMissingProps);
+
+  expect(response.status).toEqual(422);
+});
+  
+it("should return an error", async () => {
+const movieWithMissingProps = { duration: 120 };
+
+const response = await request(app)
+  .post("/api/movies")
+  .send(movieWithMissingProps);
+
+expect(response.status).toEqual(422);
+});
 });
