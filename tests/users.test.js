@@ -79,4 +79,43 @@ describe("POST /api/users", () => {
 
     expect(response.status).toEqual(500);
   });
+   it("should return an error", async () => {
+    const userWithMissingProps = { lastname: "Potter" };
+
+    const response = await request(app)
+      .post("/api/users")
+      .send(userWithMissingProps);
+
+    expect(response.status).toEqual(422);
+  });
+
+  it("should return an error", async () => {
+    const userWithMissingProps = { email: "harry@potter.com" };
+
+    const response = await request(app)
+      .post("/api/users")
+      .send(userWithMissingProps);
+
+    expect(response.status).toEqual(422);
+  });
+
+  it("should return an error", async () => {
+    const userWithMissingProps = { city: "Paris" };
+
+    const response = await request(app)
+      .post("/api/users")
+      .send(userWithMissingProps);
+
+    expect(response.status).toEqual(422);
+  });
+
+  it("should return an error", async () => {
+    const userWithMissingProps = { language: "French" };
+
+    const response = await request(app)
+      .post("/api/users")
+      .send(userWithMissingProps);
+
+    expect(response.status).toEqual(422);
+  });
 });
