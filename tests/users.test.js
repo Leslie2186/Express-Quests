@@ -77,7 +77,7 @@ describe("POST /api/users", () => {
       .post("/api/users")
       .send(movieWithMissingProps);
 
-    expect(response.status).toEqual(500);
+    expect(response.status).toEqual(422);
   });
    it("should return an error", async () => {
     const userWithMissingProps = { lastname: "Potter" };
